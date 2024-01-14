@@ -11,7 +11,6 @@ import squarify
 import os
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
-st.set_option('deprecation.showPyplotGlobalUse', False)
 
 add_logo("./na_paluchu.png", height=250)
 
@@ -59,25 +58,23 @@ with col3:
 
 df_cel = df.copy()
 
-df_cel = df_cel[df_cel['Wiek']>=wiek[0]]
-df_cel = df_cel[df_cel['Wiek']<=wiek[1]]
-df_cel = df_cel[df_cel['Waga']>=waga[0]]
-df_cel = df_cel[df_cel['Waga']<=waga[1]]
+df_cel = df_cel[df_cel['Wiek'].between(wiek[0], wiek[1])]
+df_cel = df_cel[df_cel['Waga'].between(waga[0], waga[1])]
 
 if samce == False and samice == False:
     samce = True
     samice = True
 
-if samce == True and samice == False:
+elif samce == True and samice == False:
     df_cel = df_cel[df_cel['Płeć']=='samiec']
 
-if samce == False and samice == True:
+elif samce == False and samice == True:
     df_cel = df_cel[df_cel['Płeć']=='samica']
 
 if typ == 'Psy':
     df_cel = df_cel[df_cel['typ']=='pies']
 
-if typ == 'Koty':
+elif typ == 'Koty':
     df_cel = df_cel[df_cel['typ']=='kot']
 
 if rasowe == True:
